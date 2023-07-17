@@ -60,18 +60,28 @@
     wofi #for app launch
     tailscale #for ssh
     minecraft   
+    wl-clipboard#clipboard
     cliphist #clipboard manager
     ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+
+  programs = {
+    git = {
+      enable = true;
+      userName = "lcnbr";
+      userEmail = "im@lcnbr.ch";
+    };
+  };
   programs.waybar.enable = false;
   programs.alacritty.enable = true;
   programs.vscode.enable = true;
 
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.extraConfig = ''
+    
+    exec-once = wl-paste --type text --watch cliphist store    
     $mod = SUPER 
     bind = $mod, R, exec, wofi --show drun,
     bind = $mod, C, killactive,
