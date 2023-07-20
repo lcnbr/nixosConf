@@ -49,10 +49,10 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
+    bluetuith
     gh #github cli
     xplr #terminal file manager
     qt6.qtwayland  
-    fish # better shell
     helix #terminal editor
     nil #nix LSP, for helix auto complete
     light #display brightness
@@ -62,8 +62,12 @@
     minecraft   
     wl-clipboard#clipboard
     cliphist #clipboard manager
-    ];
-
+    libsForQt5.polkit-kde-agent  #authentication
+    eww-wayland#widgets   
+   ];
+  xdg = {
+    enable = true;
+  };
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
@@ -73,6 +77,15 @@
       userName = "lcnbr";
       userEmail = "im@lcnbr.ch";
     };
+
+    bash = {
+      enable = true;
+    };
+    fish = {
+      enable = true;
+    };
+
+    
   };
   programs.waybar.enable = false;
   programs.alacritty.enable = true;

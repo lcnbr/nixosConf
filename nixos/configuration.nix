@@ -108,6 +108,10 @@
     tailscale = {
       enable = true;
     };
+    logind = {
+      extraConfig = "HandlePowerKey=suspend";
+      lidSwitch = "suspend";
+    };
   };
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
