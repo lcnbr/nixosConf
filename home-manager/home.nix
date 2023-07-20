@@ -12,6 +12,9 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ./wayland
+    ./terminals/alacritty.nix
+
   ];
 
   nixpkgs = {
@@ -53,7 +56,6 @@
     gh #github cli
     xplr #terminal file manager
     qt6.qtwayland  
-    helix #terminal editor
     nil #nix LSP, for helix auto complete
     light #display brightness
     firefox-wayland #duh
@@ -88,25 +90,9 @@
     
   };
   programs.waybar.enable = false;
-  programs.alacritty.enable = true;
   programs.vscode.enable = true;
 
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.extraConfig = ''
-    
-    exec-once = wl-paste --type text --watch cliphist store    
-    $mod = SUPER 
-    bind = $mod, R, exec, wofi --show drun,
-    bind = $mod, C, killactive,
-
-    input {
-      kb_layout = us
-      kb_variant = colemak_dh_iso
-     
-    }
-    monitor =,prefered,auto,1
-  '';
-  # Nicely reload system units when changing configs
+   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
