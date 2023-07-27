@@ -1,6 +1,6 @@
 {
-
-
+config,
+lib,
 ...
   
 }:{
@@ -13,13 +13,12 @@ wayland.windowManager.hyprland.extraConfig = ''
     bind = $mod, C, killactive,
 
     input {
-      kb_layout = us
-      kb_variant = colemak_dh_iso
-      follow_mouse = 1
-
+      kb_layout = ${config.home.keyboard.layout}
+      kb_variant = ${config.home.keyboard.variant}
       touchpad {
         natural_scroll = true
       }
+      kb_options = ${lib.strings.concatStringsSep "," config.home.keyboard.options}
     }
     monitor =,prefered,auto,1
 
@@ -32,7 +31,7 @@ wayland.windowManager.hyprland.extraConfig = ''
     }
 
     decoration {
-     rounding = 10
+     rounding = 4
     blur = true
     blur_size = 3
     blur_passes = 1

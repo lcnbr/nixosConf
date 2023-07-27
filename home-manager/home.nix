@@ -1,7 +1,8 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{ inputs, outputs, lib, config, pkgs, ... }: 
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -13,7 +14,10 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ./wayland
+    ./terminals/wezterm.nix
+    ./shells/nushell.nix
     ./terminals/alacritty.nix
+    ./editors/helix
 
   ];
 
@@ -41,7 +45,8 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = (_: true);
-    };
+      
+                };
   };
 
   home = {
@@ -61,7 +66,17 @@
     firefox-wayland #duh
     wofi #for app launch
     tailscale #for ssh
-    minecraft   
+    minecraft
+    telegram-desktop
+    xorg.setxkbmap    
+    obsidian
+    python3
+    poetry
+    zotero
+    djvulibre
+    blender
+    zathura
+    libgnomekbd
     wl-clipboard#clipboard
     cliphist #clipboard manager
     libsForQt5.polkit-kde-agent  #authentication
@@ -73,7 +88,15 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
-  programs = {
+  home.pointerCursor = {
+
+      name = "Catppuccin-Mocha-Dark-Cursors";
+
+      package = pkgs.catppuccin-cursors.mochaDark;
+
+      size = 16;
+
+    };   programs = {
     git = {
       enable = true;
       userName = "lcnbr";
@@ -82,6 +105,10 @@
 
     bash = {
       enable = true;
+      sessionVariables = {
+        EDITOR = "hx";
+        SHELL = "nu";
+      };
     };
     fish = {
       enable = true;
@@ -89,10 +116,21 @@
 
     
   };
+
+  home.sessionVariables = {
+    SHELL = "nu";
+    EDITOR = "hx";
+  };
+
+  home.keyboard = {
+    layout = "us";
+    variant = "colemak_dh_iso";
+    options = ["caps:escape"];
+  };
+
   programs.waybar.enable = false;
   programs.vscode.enable = true;
-
-   # Nicely reload system units when changing configs
+  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

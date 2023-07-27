@@ -102,7 +102,8 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "colemak_dh_iso";
-  };
+    xkbOptions = "caps:escape";
+    };
 
   services = {
     tailscale = {
@@ -112,7 +113,9 @@
       extraConfig = "HandlePowerKey=suspend";
       lidSwitch = "suspend";
     };
-  };
+    
+    fprintd.enable = true;
+    };
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     lcnbr = {
@@ -128,9 +131,15 @@
     };
   };
 
+  hardware.bluetooth.enable = true;
 
 
-
+systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+   security ={
+    pam.services.login.fprintAuth = true;
+    pam.services.greetd.fprintAuth = true;
+    pam.services.sudo.fprintAuth = true;
+  };
   
   services = {
     getty = {
@@ -158,6 +167,7 @@
 
     pipewire = {
       enable = true;
+      alsa.enable = true;
     };
   };
 

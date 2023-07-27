@@ -10,7 +10,7 @@
     enable = true;
    
     settings = {
-      theme = "catppuccin_mocha";
+      theme = "catppuccin_latte";
       editor = {
         color-modes = true;
         cursorline = true;
@@ -21,10 +21,8 @@
         };
         indent-guides = {
           render = true;
-          rainbow-option = "dim";
         };
         lsp.display-inlay-hints = true;
-        rainbow-brackets = true;
         statusline.center = ["position-percentage"];
         true-color = true;
         whitespace.characters = {
