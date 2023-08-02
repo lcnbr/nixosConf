@@ -1,5 +1,6 @@
 
-{}:{
+{...}:{
+
   accounts.email = {
   
   accounts = {
@@ -15,7 +16,11 @@
     "personal"={
       address= "me@lucien.ch";
       userName = "me@lucien.ch";
-      realName = "";
+      realName = "Lucien Huber";
+      primary = true;
+      imap.host = "mail.infomaniak.com";
+      smtp.host = "mail.infomaniak.com";
+      smtp.port = 465;
       thunderbird.enable=true;
     };
     "civil"={

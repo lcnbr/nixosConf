@@ -18,7 +18,8 @@
     ./shells/nushell.nix
     ./terminals/alacritty.nix
     ./editors/helix
-
+    ./programs
+    ./users/lcnbr.nix
   ];
 
   nixpkgs = {
@@ -70,11 +71,16 @@
     telegram-desktop
     xorg.setxkbmap    
     obsidian
+    pavucontrol
     python3
     poetry
     zotero
+    gitui
     djvulibre
+    guvcview
     blender
+    acpi
+    zoom-us
     zathura
     libgnomekbd
     wl-clipboard#clipboard

@@ -16,6 +16,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
+    ./fonts.nix
     inputs.hardware.nixosModules.framework-12th-gen-intel
     
   ];
@@ -168,8 +169,12 @@ systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
     pipewire = {
       enable = true;
       alsa.enable = true;
+      alsa.support32Bit =  true;
+      pulse.enable = true;
     };
   };
+
+  sound.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
