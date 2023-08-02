@@ -14,8 +14,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hardware.url = "github:nixos/nixos-hardware";
-
+    
+    agenix.url = "github:ryantm/agenix";    
     hyprland.url = "github:hyprwm/Hyprland";
+
+
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!

@@ -1,7 +1,13 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -18,7 +24,7 @@
     ./hardware-configuration.nix
     ./fonts.nix
     inputs.hardware.nixosModules.framework-12th-gen-intel
-    
+    inputs.agenix.nixosModules.default
   ];
 
   nixpkgs = {
@@ -49,7 +55,7 @@
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -61,15 +67,18 @@
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
       substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];    };
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
   };
-
+  environment.systemPackages = [
+    inputs.agenix.packages."x86_64-linux".default
+  ];
   networking.hostName = "gluluon";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_6_3;
-    
+
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -104,7 +113,7 @@
     layout = "us";
     xkbVariant = "colemak_dh_iso";
     xkbOptions = "caps:escape";
-    };
+  };
 
   services = {
     tailscale = {
@@ -114,9 +123,9 @@
       extraConfig = "HandlePowerKey=suspend";
       lidSwitch = "suspend";
     };
-    
+
     fprintd.enable = true;
-    };
+  };
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     lcnbr = {
@@ -128,34 +137,33 @@
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "wheel" "networkmanager" ];
+      extraGroups = ["wheel" "networkmanager"];
     };
   };
 
   hardware.bluetooth.enable = true;
 
-
-systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-   security ={
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  security = {
     pam.services.login.fprintAuth = true;
     pam.services.greetd.fprintAuth = true;
     pam.services.sudo.fprintAuth = true;
   };
-  
+
   services = {
     getty = {
       autologinUser = "lcnbr";
-      };
+    };
     fwupd = {
       enable = true;
     };
-  openssh = {
-    enable = true;
-    # Forbid root login through SSH.
-    permitRootLogin = "no";
-    # Use keys only. Remove if you want to SSH using password (not recommended)
-    passwordAuthentication = false;
-  };
+    openssh = {
+      enable = true;
+      # Forbid root login through SSH.
+      permitRootLogin = "no";
+      # Use keys only. Remove if you want to SSH using password (not recommended)
+      passwordAuthentication = false;
+    };
     greetd = {
       enable = true;
       settings = {
@@ -164,16 +172,17 @@ systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
           user = "lcnbr";
         };
       };
-    };  
+    };
 
     pipewire = {
       enable = true;
       alsa.enable = true;
-      alsa.support32Bit =  true;
+      alsa.support32Bit = true;
       pulse.enable = true;
     };
   };
 
+  age.secrets.ikmail.file = ../secrets/ikmail.age;
   sound.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

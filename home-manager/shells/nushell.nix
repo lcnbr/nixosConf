@@ -1,5 +1,4 @@
-{...}:
-{
+{config, ...}: {
   programs.nushell = {
     enable = true;
     configFile = {
@@ -7,6 +6,8 @@
     };
     envFile = {
       source = ./env.nu;
+    };
+    environmentVariables = {
     };
   };
 }

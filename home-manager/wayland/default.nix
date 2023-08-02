@@ -1,13 +1,13 @@
-{pkgs,
-lib,
-inputs,
-...
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
 }
-:{
-
-imports = [
-  ./hyprland
-];
+: {
+  imports = [
+    ./hyprland
+  ];
 
   home.packages = with pkgs; [
     # screenshot
@@ -19,7 +19,7 @@ imports = [
     swaylock-effects
 
     # utils
-    
+
     wf-recorder
     wl-clipboard
     wlogout
@@ -32,7 +32,6 @@ imports = [
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
-
 
   # fake a tray to let apps start
   # https://github.com/nix-community/home-manager/issues/2064
