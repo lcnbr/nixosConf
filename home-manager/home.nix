@@ -80,8 +80,13 @@
     python3
     poetry
     zotero
+    typst
+    typstfmt
+    typst-lsp
+    typst-live
     gitui
     djvulibre
+    gcc
     guvcview
     blender
     acpi

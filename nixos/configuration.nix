@@ -23,7 +23,7 @@
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./fonts.nix
-    inputs.hardware.nixosModules.framework-12th-gen-intel
+    # inputs.hardware.nixosModules.framework-12th-gen-intel
     inputs.agenix.nixosModules.default
   ];
 
@@ -168,7 +168,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
           user = "lcnbr";
         };
       };

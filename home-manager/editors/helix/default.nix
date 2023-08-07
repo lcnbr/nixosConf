@@ -1,4 +1,3 @@
-
 {
   inputs',
   pkgs,
@@ -8,7 +7,8 @@
 
   programs.helix = {
     enable = true;
-   
+
+    # defaultEditor = true;
     settings = {
       theme = "catppuccin_latte";
       editor = {
