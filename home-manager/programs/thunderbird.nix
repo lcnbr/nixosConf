@@ -1,11 +1,12 @@
 {
- programs.thunderbird = {
+  programs.thunderbird = {
     enable = true;
 
+    settings = {"privacy.donottrackheader.enabled" = true;};
     profiles = {
       default = {
         isDefault = true;
-        settings = { 
+        settings = {
           # 9205: Avoid information leakage in reply header
           "mailnews.reply_header_type" = 0;
           "mailnews.reply_header_originalmessage" = "";

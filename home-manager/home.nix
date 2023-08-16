@@ -63,7 +63,6 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     bluetuith
-    gh #github cli
     xplr #terminal file manager
     qt6.qtwayland
     nil #nix LSP, for helix auto complete
@@ -80,6 +79,9 @@
     python3
     poetry
     zotero
+    libreoffice-fresh
+    blender
+    pdfarranger
     typst
     typstfmt
     typst-lsp
@@ -112,11 +114,20 @@
     size = 16;
   };
 
+  services = {
+    dunst.enable = true;
+  };
+
   programs = {
     git = {
       enable = true;
       userName = "lcnbr";
       userEmail = "im@lcnbr.ch";
+    };
+
+    gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
     };
 
     bash = {
