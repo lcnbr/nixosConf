@@ -23,6 +23,7 @@
     ./shells/nushell.nix
     ./terminals/alacritty.nix
     ./editors/helix
+    ./editors/vscode
     ./programs
     ./users/lcnbr.nix
   ];
@@ -163,7 +164,6 @@
   };
 
   programs.waybar.enable = false;
-  programs.vscode.enable = true;
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
