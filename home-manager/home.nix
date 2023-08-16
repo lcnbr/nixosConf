@@ -90,6 +90,7 @@
     gitui
     djvulibre
     gcc
+    xdg-utils #needed for vscode to open links...
     guvcview
     blender
     acpi
@@ -107,6 +108,18 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "text/html" = ["firefox-wayland.desktop"];
+      "application/pdf" = ["sioyek.desktop"];
+    };
+    defaultApplications = {
+      "application/pdf" = ["sioyek.desktop"];
+      "text/html" = ["firefox-wayland.desktop"];
+      "text/x-uri" = ["firefox-wayland.desktop"];
+    };
+  };
   home.pointerCursor = {
     name = "Catppuccin-Mocha-Dark-Cursors";
 

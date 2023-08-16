@@ -18,6 +18,8 @@
     agenix.url = "github:ryantm/agenix";
     hyprland.url = "github:hyprwm/Hyprland";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
+
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
