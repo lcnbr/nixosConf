@@ -1,4 +1,3 @@
-
 {default, ...}: {
   programs.wezterm = {
     enable = true;
@@ -9,6 +8,7 @@
         color_scheme = "Catppuccin Latte",
         window_background_opacity =   0.9,
         enable_scroll_bar = false,
+        font=wezterm.font( "BlexMono Nerd Font", { weight = 'Medium'}),
         enable_tab_bar = false,
         scrollback_lines = 10000,
         window_padding = {
@@ -17,6 +17,7 @@
           top = 10,
           bottom = 10,
         },
+        font_size= 13,
         check_for_updates = false,
         hide_mouse_cursor_when_typing = false,
         default_cursor_style = "SteadyBar",

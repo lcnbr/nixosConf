@@ -18,13 +18,11 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./wayland
-    ./terminals/wezterm.nix
-    ./shells/nushell.nix
-    ./terminals/alacritty.nix
-    ./editors/helix
-    ./editors/vscode
-    ./programs
+    ./graphical
+    ./terminal
+    ./packages
+    ./services
+    ./themes
     ./users/lcnbr.nix
   ];
 
@@ -81,6 +79,7 @@
     poetry
     zotero
     libreoffice-fresh
+    unzrip
     blender
     pdfarranger
     typst
