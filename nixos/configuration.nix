@@ -100,13 +100,6 @@
 
   console.useXkbConfig = true;
 
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.hidpi = true;
-    };
-  };
-
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -141,7 +134,7 @@
   };
 
   hardware.bluetooth.enable = true;
-
+  hardware.opengl.enable = true;
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   security = {
     pam.services.login.fprintAuth = true;
@@ -179,6 +172,11 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
   };
 
   age.secrets.ikmail.file = ../secrets/ikmail.age;

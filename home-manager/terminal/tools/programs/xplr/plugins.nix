@@ -1,4 +1,4 @@
-pkgs: {
+{pkgs, ...}: {
   wl-clipboard-plugin = pkgs.fetchFromGitHub {
     owner = "sayanarijit";
     repo = "wl-clipboard.xplr";

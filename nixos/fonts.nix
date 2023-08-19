@@ -34,7 +34,7 @@
     fontconfig.defaultFonts = {
       serif = ["IBM Plex Serif" "Noto Color Emoji"];
       sansSerif = ["IBM Plex Sans" "Noto Color Emoji"];
-      monospace = ["IBMPlexMono Nerd Font" "Noto Color Emoji"];
+      monospace = ["BlexMono Nerd Font" "Noto Color Emoji"];
       emoji = ["Noto Color Emoji"];
     };
   };
