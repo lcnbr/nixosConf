@@ -13,7 +13,7 @@
       };
       "personal" = {
         address = "me@lucien.ch";
-        userName = "me@lucien.ch";
+        userName = "me@lchbr.ch";
         realName = "Lucien Huber";
         primary = true;
         imap.host = "mail.infomaniak.com";

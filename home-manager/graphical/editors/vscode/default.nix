@@ -6,7 +6,6 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     julialang.language-julia
     ifplusor.semantic-lunaria
-    gregoire.dance
   ];
 in {
   imports = [];
@@ -19,7 +18,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         kamadorueda.alejandra
-        ms-python.python
+        # ms-python.python
         rust-lang.rust-analyzer
         eamodio.gitlens
         bbenoist.nix
@@ -27,12 +26,13 @@ in {
         denoland.vscode-deno
         ritwickdey.liveserver
         github.copilot
+        github.copilot-chat
         foam.foam-vscode
         bmewburn.vscode-intelephense-client
       ]
       ++ marketplace-extensions;
     userSettings = {
-      "terminal.integrated.defaultProfile.linux" = "fish";
+      "terminal.integrated.defaultProfile.linux" = "nu";
       "workbench.colorTheme" = "Semantic Lunaria Light"; #theme, want to modify it 22.5.23
       "git.enableSmartCommit" = true; # autofetch and things
       "git.confirmSync" = false;

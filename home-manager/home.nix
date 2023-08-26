@@ -75,7 +75,6 @@
     xorg.setxkbmap
     obsidian
     pavucontrol
-    python3
     poetry
     zotero
     libreoffice-fresh
