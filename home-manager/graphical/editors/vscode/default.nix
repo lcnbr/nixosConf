@@ -23,6 +23,8 @@ in {
         eamodio.gitlens
         bbenoist.nix
         arrterian.nix-env-selector
+
+        tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
         github.copilot
