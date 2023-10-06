@@ -18,7 +18,7 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         kamadorueda.alejandra
-        # ms-python.python
+        ms-python.python
         rust-lang.rust-analyzer
         eamodio.gitlens
         bbenoist.nix
@@ -43,6 +43,7 @@ in {
         "language-julia.interrupt"
       ];
       "julia.symbolCacheDownload" = true;
+      "keyboard.dispatch" = "keyCode";
     };
   };
 }

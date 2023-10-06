@@ -74,10 +74,12 @@
     inputs.agenix.packages."x86_64-linux".default
   ];
   networking.hostName = "gluluon";
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   networking.networkmanager.enable = true;
 
   # Set your time zone.

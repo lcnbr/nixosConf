@@ -312,7 +312,7 @@ $env.config = {
 
   hooks: {
     pre_prompt: [{||
-      null  # replace with source code to run before the prompt is shown
+    null
     }]
     pre_execution: [{||
       null  # replace with source code to run before the repl input is run
