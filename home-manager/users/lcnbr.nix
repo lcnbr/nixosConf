@@ -6,9 +6,9 @@
         flavor = "gmail.com";
         userName = "huberlulu";
         realName = "Lucien Huber";
-        passwordCommand = "";
         imap.host = "imap.gmail.com";
         smtp.host = "smtp.gmail.com";
+        aerc.imapAuth = "xoauth2";
         thunderbird.enable = true;
       };
       "personal" = {
@@ -22,7 +22,15 @@
         imap.port = 993;
         thunderbird.enable = true;
       };
-      "civil" = {
+      "unibe" = {
+        address = "lucien.huber@unibe.ch";
+        userName = "Lucien Huber";
+        realName = "Lucien Huber";
+        imap.host = "mail.unibe.ch";
+        smtp.host = "smtp.unibe.ch";
+        smtp.port = 587;
+        imap.port = 993;
+        thunderbird.enable = true;
       };
     };
   };

@@ -7,6 +7,7 @@
     zulip
     logiops
     wev
+    beeper
     wget
   ];
 }
