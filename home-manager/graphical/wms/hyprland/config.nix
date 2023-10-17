@@ -4,7 +4,7 @@
   ...
 }: {
   wayland.windowManager.hyprland.extraConfig = ''
-      
+    
                 exec-once = wl-paste --type text --watch cliphist store    
                 $mod = SUPER 
                 bind = $mod, R, exec, wofi --show drun,
@@ -15,7 +15,7 @@
                 bind = $mod SHIFT,tab, workspace, m-1
 
                 input {
-      
+    
                  kb_layout = ch
             kb_variant = fr
             kb_model =
@@ -37,7 +37,7 @@
             kb_model =
             kb_options =
             kb_options = ${lib.strings.concatStringsSep "," config.home.keyboard.options}
-    
+      
 
         }
 
@@ -113,5 +113,5 @@
     bindl=,switch:off:Lid Switch,exec,${./lid.sh} open
 
     ## Lid is closed
-    bindl=,switch:on:Lid Switch,exec,${./lib.sh} close'';
+    bindl=,switch:on:Lid Switch,exec,${./lid.sh} close'';
 }
