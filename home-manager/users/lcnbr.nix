@@ -24,7 +24,7 @@
       };
       "unibe" = {
         address = "lucien.huber@unibe.ch";
-        userName = "Lucien Huber";
+        userName = "lh23k471";
         realName = "Lucien Huber";
         imap.host = "mail.unibe.ch";
         smtp.host = "smtp.unibe.ch";
