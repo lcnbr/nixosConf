@@ -23,7 +23,8 @@ in {
         eamodio.gitlens
         bbenoist.nix
         arrterian.nix-env-selector
-
+        ms-toolsai.jupyter
+        ms-python.vscode-pylance
         tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
