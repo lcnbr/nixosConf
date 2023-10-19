@@ -22,6 +22,7 @@ in {
         rust-lang.rust-analyzer
         eamodio.gitlens
         bbenoist.nix
+        tomoki1207.pdf
         arrterian.nix-env-selector
         ms-toolsai.jupyter
         ms-python.vscode-pylance
@@ -45,6 +46,9 @@ in {
       ];
       "julia.symbolCacheDownload" = true;
       "keyboard.dispatch" = "keyCode";
+      "foam.completion.useAlias" = "whenPathDiffersFromTitle";
+      "foam.files.defaultNoteExtension" = "typ";
+      "foam.openDailyNote.fileExtension" = "typ";
     };
   };
 }

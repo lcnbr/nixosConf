@@ -4,10 +4,13 @@
     prismlauncher
     glfw-wayland
     devbox
+
     zulip
     logiops
     wev
     beeper
+
     wget
+    spotify-tui
   ];
 }

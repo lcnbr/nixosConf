@@ -27,7 +27,7 @@
         userName = "lh23k471";
         realName = "Lucien Huber";
         imap.host = "mail.unibe.ch";
-        smtp.host = "smtp.unibe.ch";
+        smtp.host = "mail.campus.unibe.ch";
         smtp.port = 587;
         imap.port = 993;
         thunderbird.enable = true;

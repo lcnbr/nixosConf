@@ -72,6 +72,8 @@
   };
   environment.systemPackages = [
     inputs.agenix.packages."x86_64-linux".default
+    pkgs.via
+    pkgs.qmk
   ];
   networking.hostName = "gluluon";
   networking.wireless.iwd.enable = true;
@@ -119,7 +121,11 @@
 
     fprintd.enable = true;
   };
+  services.udev.enable = true;
+
+  services.udev.packages = [pkgs.via pkgs.qmk-udev-rules];
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
+
   users.users = {
     lcnbr = {
       # TODO: You can set an initial password for your user.
@@ -135,6 +141,8 @@
   };
 
   hardware.bluetooth.enable = true;
+
+  hardware.keyboard.qmk.enable = true;
   hardware.opengl.enable = true;
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   security = {
