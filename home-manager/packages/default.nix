@@ -4,7 +4,7 @@
     prismlauncher
     glfw-wayland
     devbox
-
+    localsend
     zulip
     logiops
     wev

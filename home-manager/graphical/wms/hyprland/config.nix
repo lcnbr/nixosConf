@@ -4,18 +4,18 @@
   ...
 }: {
   wayland.windowManager.hyprland.extraConfig = ''
-    
+      
                 exec-once = wl-paste --type text --watch cliphist store    
                 $mod = SUPER 
                 bind = $mod, R, exec, wofi --show drun,
                 bind = $mod, C, killactive,
-                bind = $mod, tab, workspace, m+1
+                bind = $mod, tab, workspace, r+1
                 bind = $mod, mouse_down, workspace, e+1
                 bind = $mod, mouse_up, workspace, e-1
-                bind = $mod SHIFT,tab, workspace, m-1
+                bind = $mod SHIFT,tab, workspace, r-1
 
                 input {
-    
+      
                  kb_layout = ch
             kb_variant = fr
             kb_model =
@@ -37,7 +37,7 @@
             kb_model =
             kb_options =
             kb_options = ${lib.strings.concatStringsSep "," config.home.keyboard.options}
-      
+    
 
         }
 
