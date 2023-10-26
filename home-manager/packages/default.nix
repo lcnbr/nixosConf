@@ -9,7 +9,8 @@
     logiops
     wev
     beeper
-
+    unar
+    espanso-wayland
     wget
     spotify-tui
   ];

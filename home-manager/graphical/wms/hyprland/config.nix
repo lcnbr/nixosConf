@@ -9,10 +9,10 @@
                 $mod = SUPER 
                 bind = $mod, R, exec, wofi --show drun,
                 bind = $mod, C, killactive,
-                bind = $mod, tab, workspace, r+1
-                bind = $mod, mouse_down, workspace, e+1
-                bind = $mod, mouse_up, workspace, e-1
-                bind = $mod SHIFT,tab, workspace, r-1
+                bind = $mod, tab, workspace, empty
+                bind = $mod, mouse_down, workspace, r+1
+                bind = $mod, mouse_up, workspace, r-1
+                bind = $mod SHIFT,tab, workspace, -1
 
                 input {
       

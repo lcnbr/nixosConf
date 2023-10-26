@@ -6,6 +6,7 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     julialang.language-julia
     ifplusor.semantic-lunaria
+    mkhl.direnv
   ];
 in {
   imports = [];
@@ -29,6 +30,7 @@ in {
         tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
+        
         github.copilot
         github.copilot-chat
         foam.foam-vscode
