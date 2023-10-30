@@ -17,6 +17,8 @@
       lexend
       noto-fonts
       noto-fonts-cjk
+      cm_unicode
+      lmodern
       noto-fonts-emoji
       roboto
       ibm-plex

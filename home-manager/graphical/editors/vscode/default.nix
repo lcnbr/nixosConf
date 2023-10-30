@@ -23,7 +23,7 @@ in {
         eamodio.gitlens
         bbenoist.nix
         arrterian.nix-env-selector
-
+        ms-vscode-remote.remote-ssh
         tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
@@ -43,6 +43,8 @@ in {
         "language-julia.interrupt"
       ];
       "julia.symbolCacheDownload" = true;
+
+      "julia.enableTelemetry" = false;
     };
   };
 }

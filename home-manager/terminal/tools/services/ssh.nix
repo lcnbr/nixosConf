@@ -5,9 +5,8 @@ _: {
       hashKnownHosts = true;
       compression = true;
       matchBlocks = {
-        "aur" = {
-          hostname = "aur.archlinux.org";
-          identityFile = "~/.ssh/aur";
+        "gluluon.tailb3264.ts.net" = {
+          user = "lucienh";
         };
       };
     };
