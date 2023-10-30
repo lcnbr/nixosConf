@@ -6,6 +6,7 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     julialang.language-julia
     ifplusor.semantic-lunaria
+    mkhl.direnv
   ];
 in {
   imports = [];
@@ -18,12 +19,15 @@ in {
     extensions = with pkgs.vscode-extensions;
       [
         kamadorueda.alejandra
-        # ms-python.python
+        ms-python.python
         rust-lang.rust-analyzer
         eamodio.gitlens
         bbenoist.nix
+        tomoki1207.pdf
         arrterian.nix-env-selector
         ms-vscode-remote.remote-ssh
+        ms-toolsai.jupyter
+        ms-python.vscode-pylance
         tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
@@ -45,6 +49,10 @@ in {
       "julia.symbolCacheDownload" = true;
 
       "julia.enableTelemetry" = false;
+      "keyboard.dispatch" = "keyCode";
+      "foam.completion.useAlias" = "whenPathDiffersFromTitle";
+      "foam.files.defaultNoteExtension" = "typ";
+      "foam.openDailyNote.fileExtension" = "typ";
     };
   };
 }

@@ -1,6 +1,6 @@
 # Nushell Config File
 #
-# version = "0.84.1"
+# version = "0.85.1"
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -139,35 +139,28 @@ let light_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
-    show_banner: true # true or false to enable or disable the welcome banner at startup
-
-    ls: {
-        use_ls_colors: true # use the LS_COLORS environment variable to colorize output
-        clickable_links: true # enable or disable clickable links. Your terminal has to support links.
+  # true or false to enable or disable the welcome banner at startup
+  show_banner: false
+  ls: {
+    use_ls_colors: true # use the LS_COLORS environment variable to colorize output
+    clickable_links: true # enable or disable clickable links. Your terminal has to support links.
+  }
+  rm: {
+    always_trash: false # always act as if -t was given. Can be overridden with -p
+  }
+  cd: {
+    abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
+  }
+  table: {
+    mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+    index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
+    show_empty: true # show 'empty list' and 'empty record' placeholders for command output
+    trim: {
+      methodology: wrapping # wrapping or truncating
+      wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
+      truncating_suffix: "..." # A suffix used by the 'truncating' methodology
     }
-
-    rm: {
-        always_trash: false # always act as if -t was given. Can be overridden with -p
-    }
-
-    cd: {
-        abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
-    }
-
-    table: {
-        mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-        index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
-        show_empty: true # show 'empty list' and 'empty record' placeholders for command output
-        padding: { left: 1, right: 1 } # a left right padding of each column in a table
-        trim: {
-            methodology: wrapping # wrapping or truncating
-            wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
-            truncating_suffix: "..." # A suffix used by the 'truncating' methodology
-        }
-        header_on_separator: false # show header text on separator/border line
-    }
-
-    error_style: "fancy" # "fancy" or "plain" for screen reader-friendly error messages
+  }
 
     # datetime_format determines what a datetime rendered in the shell would look like.
     # Behavior without this configuration point will be to "humanize" the datetime display,
@@ -188,14 +181,9 @@ $env.config = {
         },
         table: {
             split_line: {fg: "#404040"},
-            selected_cell: {},
+            selected_cell: {bg: light_blue},
             selected_row: {},
             selected_column: {},
-            show_cursor: true,
-            line_head_top: true,
-            line_head_bottom: true,
-            line_shift: true,
-            line_index: true,
         },
     }
 
@@ -239,7 +227,7 @@ $env.config = {
     edit_mode: emacs # emacs, vi
     shell_integration: false # enables terminal shell integration. Off by default, as some terminals have issues with this.
     render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
-
+ 
     hooks: {
         pre_prompt: [{ null }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run

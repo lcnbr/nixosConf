@@ -3,8 +3,14 @@
   home.packages = with pkgs; [
     prismlauncher
     glfw-wayland
-    inkscape
-
-    texlive.combined.scheme-medium
+    devbox
+    localsend
+    zulip
+    logiops
+    wev
+    beeper
+    unar
+    wget
+    spotify-tui
   ];
 }
