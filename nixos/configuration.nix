@@ -135,6 +135,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
+  hardware.logitech.wireless.enable = true;
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   security = {
     pam.services.login.fprintAuth = true;

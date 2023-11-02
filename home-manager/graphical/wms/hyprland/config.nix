@@ -4,7 +4,7 @@
   ...
 }: {
   wayland.windowManager.hyprland.extraConfig = ''
-    
+      
                 exec-once = wl-paste --type text --watch cliphist store    
                 $mod = SUPER 
                 bind = $mod, R, exec, wofi --show drun,
@@ -15,7 +15,7 @@
                 bind = $mod SHIFT,tab, workspace, -1
 
                 input {
-    
+      
                  kb_layout = ${config.home.keyboard.layout}
             kb_variant = ${config.home.keyboard.variant}
             kb_model =
@@ -31,13 +31,13 @@
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
         }
 
-        device:at-translated-set-2-keyboard {
-            kb_layout = ${config.home.keyboard.layout}
-            kb_variant = ${config.home.keyboard.variant}
+        device:olkb-planck {
+            kb_layout = ch
+            kb_variant = fr
             kb_model =
             kb_options =
             kb_options = ${lib.strings.concatStringsSep "," config.home.keyboard.options}
-      
+    
 
         }
 

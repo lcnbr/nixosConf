@@ -10,6 +10,7 @@
     wev
     beeper
     unar
+    solaar
     wget
     spotify-tui
   ];

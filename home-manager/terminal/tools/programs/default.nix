@@ -2,5 +2,6 @@
   imports = [
     ./xplr
     ./direnv
+    ./bottom
   ];
 }
