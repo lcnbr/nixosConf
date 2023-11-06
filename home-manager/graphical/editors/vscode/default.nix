@@ -9,7 +9,7 @@
     mkhl.direnv
   ];
   pinnednixpkgs = import (builtins.fetchTarball {
-    name = "my-pinned-nixpkgs";
+    name = "my-pinned-nixpkgs";#to version 1.81
     url = "https://github.com/NixOS/nixpkgs/archive/efd23a1c9ae8c574e2ca923c2b2dc336797f4cc4.tar.gz";
   }) {config = {
       allowUnfree = true;
