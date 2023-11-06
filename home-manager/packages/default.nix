@@ -9,8 +9,10 @@
     logiops
     wev
     beeper
+    lapce
     unar
     solaar
+    morgen #cal made in ch
     wget
     spotify-tui
   ];
