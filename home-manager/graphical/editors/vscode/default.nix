@@ -10,7 +10,7 @@
   ];
   pinnednixpkgs = import (builtins.fetchTarball {
     name = "my-pinned-nixpkgs";#to version 1.81
-    url = "https://github.com/NixOS/nixpkgs/archive/efd23a1c9ae8c574e2ca923c2b2dc336797f4cc4.tar.gz";
+    url = "https://github.com/NixOS/nixpkgs/archive/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11.tar.gz";
   }) {config = {
       allowUnfree = true;
     };};
