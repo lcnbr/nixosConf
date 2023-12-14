@@ -126,7 +126,7 @@
       # Be sure to change it (using passwd) after rebooting!
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILwU7t6UJmWcDd+oayloWbTNixqe5J010amkU0p/7gKc im@lcnbr.ch"
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = ["wheel" "networkmanager"];
@@ -141,6 +141,11 @@
     pam.services.login.fprintAuth = true;
     pam.services.greetd.fprintAuth = true;
     pam.services.sudo.fprintAuth = true;
+  };
+
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   services = {
@@ -177,7 +182,9 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   age.secrets.ikmail.file = ../secrets/ikmail.age;

@@ -6,14 +6,16 @@
     devbox
     okular
     albert
+    beeper
     localsend
     zulip
     logiops
     whatsapp-for-linux
     zoom-us
     wev
-    beeper
-    cudaPackages_12_2.cudatoolkit
+    upower
+    discord
+    cudaPackages.cudatoolkit
     xorg.libxcb
     glxinfo
     lapce

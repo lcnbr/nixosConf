@@ -8,20 +8,21 @@
     ifplusor.semantic-lunaria
     mkhl.direnv
   ];
-  pinnednixpkgs = import (builtins.fetchTarball {
-    name = "my-pinned-nixpkgs";#to version 1.81
-    url = "https://github.com/NixOS/nixpkgs/archive/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11.tar.gz";
-  }) {config = {
-      allowUnfree = true;
-    };};
-
+  pinnednixpkgs =
+    import (builtins.fetchTarball {
+      name = "my-pinned-nixpkgs"; #to version 1.81
+      url = "https://github.com/NixOS/nixpkgs/archive/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11.tar.gz";
+    }) {
+      config = {
+        allowUnfree = true;
+      };
+    };
 in {
   imports = [];
-  
 
   programs.vscode = {
     enable = true;
-    package= pinnednixpkgs.vscode;
+    package = pinnednixpkgs.vscode;
 
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
@@ -47,8 +48,8 @@ in {
       ]
       ++ marketplace-extensions;
     userSettings = {
-      "terminal.integrated.defaultProfile.linux" = "nu";
-      "workbench.colorTheme" = "Semantic Lunaria Light"; #theme, want to modify it 22.5.23
+      # "terminal.integrated.defaultProfile.linux" = "nu";
+      "workbench.colorTheme" = "Catppuccin Noctis Frappé"; #theme, want to modify it 22.5.23
       "git.enableSmartCommit" = true; # autofetch and things
       "git.confirmSync" = false;
       "git.autofetch" = true;

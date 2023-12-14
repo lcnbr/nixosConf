@@ -24,10 +24,13 @@
       };
       "unibe" = {
         address = "lucien.huber@unibe.ch";
-        userName = "lh23k471";
+        userName = "lucien.huber@unibe.ch";
         realName = "Lucien Huber";
-        imap.host = "mail.unibe.ch";
-        smtp.host = "mail.campus.unibe.ch";
+        imap.host = "outlook.office365.com";
+        smtp.host = "smtp.office365.com";
+        smtp.tls.useStartTls = true;
+        aerc.smtpAuth = "xoauth2";
+        aerc.imapAuth = "xoauth2";
         smtp.port = 587;
         imap.port = 993;
         thunderbird.enable = true;

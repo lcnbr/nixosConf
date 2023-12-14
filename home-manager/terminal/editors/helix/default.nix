@@ -10,10 +10,11 @@
 
     # defaultEditor = true;
     settings = {
-      theme = "catppuccin_latte";
+      theme = "catppuccin_frappe";
       editor = {
         color-modes = true;
         cursorline = true;
+        soft-wrap.enable = true;
         cursor-shape = {
           insert = "bar";
           normal = "block";

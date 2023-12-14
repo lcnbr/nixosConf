@@ -13,6 +13,11 @@
           args = ["-i" "2" "-"];
         };
       }
+      {
+        name = "rust";
+        auto-format=true;
+        
+      }
 
       {
         name = "nix";
@@ -33,12 +38,11 @@
           unit = " ";
         };
         text-width = 100;
-        language-server = {command = "typst-lsp";};
-        rulers = [100];
+                rulers = [100];
         soft-wrap.wrap-at-text-width = true;
       }
     ];
-    language-server = {
+    language-servers = {
       nil = {
         command = lib.getExe pkgs.nil;
         config.nil.formatting.command = ["${lib.getExe pkgs.alejandra}" "-q"];
