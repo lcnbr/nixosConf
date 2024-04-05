@@ -33,6 +33,7 @@ in {
     stremio
     cargo-flamegraph
     wget
+    warp-terminal
     # spotify-tui
   ];
 }

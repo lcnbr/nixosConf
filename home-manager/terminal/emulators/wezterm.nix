@@ -5,9 +5,11 @@
   ...
 }: {
   programs.wezterm = {
-    enable = true;
+    enable = false;
     extraConfig = ''
       local wezterm = require "wezterm"
+
+
 
       return {
         color_scheme = "Catppuccin Latte",
@@ -23,12 +25,13 @@
           bottom = 10,
         },
         font_size= 13,
+        enable_wayland = true,
         check_for_updates = false,
         hide_mouse_cursor_when_typing = false,
         default_cursor_style = "SteadyBar",
         default_prog ={"nu"},
       }
     '';
-    package = inputs.wezterm.packages.${pkgs.system}.default;
+    # package = inputs.wezterm.packages.${pkgs.system}.default;
   };
 }
