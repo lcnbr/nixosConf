@@ -104,7 +104,7 @@
     wl-clipboard #clipboard
     cliphist #clipboard manager
     libsForQt5.polkit-kde-agent #authentication
-    eww-wayland #widgets
+    eww #widgets
   ];
   xdg = {
     enable = true;
@@ -164,7 +164,7 @@
       enable = true;
       settings = {
         email = "login@lcnbr.ch";
-        pinentry = "gnome3";
+        pinentry = pkgs.pinentry-gnome3;
       };
     };
   };

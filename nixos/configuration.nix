@@ -102,9 +102,11 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "colemak_dh_iso";
-    xkbOptions = "caps:escape";
+    xkb = {
+      layout = "us";
+      variant = "colemak_dh_iso";
+      options = "caps:escape";
+    };
   };
 
   services = {
@@ -114,6 +116,10 @@
     logind = {
       extraConfig = "HandlePowerKey=suspend";
       lidSwitch = "suspend";
+    };
+    dbus = {
+      enable = true;
+      packages = with pkgs; [gcr];
     };
 
     fprintd.enable = true;
@@ -158,9 +164,11 @@
     openssh = {
       enable = true;
       # Forbid root login through SSH.
-      permitRootLogin = "no";
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
       # Use keys only. Remove if you want to SSH using password (not recommended)
-      passwordAuthentication = false;
     };
     greetd = {
       enable = true;
