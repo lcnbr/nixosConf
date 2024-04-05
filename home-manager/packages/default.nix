@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  prismlauncher = pkgs.prismlauncher.override {
+    glfw = pkgs.glfw-wayland-minecraft;
+  };
+in {
   imports = [];
   home.packages = with pkgs; [
     prismlauncher
@@ -20,9 +24,15 @@
     glxinfo
     lapce
     unar
+    # centerpiece
     solaar
     morgen #cal made in ch
+    figma-linux
+
+    # chromium
+    stremio
+    cargo-flamegraph
     wget
-    spotify-tui
+    # spotify-tui
   ];
 }

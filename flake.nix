@@ -18,6 +18,9 @@
     agenix.url = "github:ryantm/agenix";
     hyprland.url = "github:hyprwm/Hyprland";
 
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+    };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
 
     # Shameless plug: looking for a way to nixify your themes and make

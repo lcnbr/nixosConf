@@ -22,7 +22,7 @@ in {
 
   programs.vscode = {
     enable = true;
-    package = pinnednixpkgs.vscode;
+    # package = pkgs.vscode;
 
     enableExtensionUpdateCheck = false;
     enableUpdateCheck = false;
@@ -57,7 +57,8 @@ in {
         "language-julia.interrupt"
       ];
       "julia.symbolCacheDownload" = true;
-
+      "extensions.autoUpdate" = false;
+      "window.titleBarStyle" = "custom";
       "julia.enableTelemetry" = false;
       "keyboard.dispatch" = "keyCode";
       "foam.completion.useAlias" = "whenPathDiffersFromTitle";

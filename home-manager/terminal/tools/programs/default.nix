@@ -3,5 +3,6 @@
     ./xplr
     ./direnv
     ./bottom
+    ./yazi
   ];
 }

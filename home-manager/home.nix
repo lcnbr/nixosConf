@@ -53,6 +53,8 @@
 
       permittedInsecurePackages = [
         "zotero-6.0.27"
+
+        "electron-25.9.0"
       ];
     };
   };
@@ -139,6 +141,7 @@
       enable = true;
       userName = "lcnbr";
       userEmail = "im@lcnbr.ch";
+      extraConfig = {rerere = {enabled = "true";};};
     };
 
     gh = {
@@ -161,6 +164,7 @@
       enable = true;
       settings = {
         email = "login@lcnbr.ch";
+        pinentry = "gnome3";
       };
     };
   };

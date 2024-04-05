@@ -1,4 +1,9 @@
-{default, ...}: {
+{
+  default,
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -24,5 +29,6 @@
         default_prog ={"nu"},
       }
     '';
+    package = inputs.wezterm.packages.${pkgs.system}.default;
   };
 }
