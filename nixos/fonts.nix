@@ -23,6 +23,36 @@
       roboto
       ibm-plex
 
+      iosevka-comfy.comfy
+
+      (iosevka.override {
+        set = "custom";
+        privateBuildPlan = {
+          family = "Iosevka Custom";
+          spacing = "normal";
+          serifs = "sans";
+          noCvSs = true;
+          exportGlyphNames = false;
+
+          variants = {
+            inherits = "ss15";
+          };
+
+          widths = {
+            Condensed = {
+              shape = 500;
+              menu = 3;
+              css = "condensed";
+            };
+            Normal = {
+              shape = 600;
+              menu = 5;
+              css = "normal";
+            };
+          };
+        };
+      })
+
       # nerdfonts
       (nerdfonts.override {fonts = ["IBMPlexMono" "Iosevka" "FiraCode" "JetBrainsMono"];})
     ];
@@ -36,7 +66,7 @@
     fontconfig.defaultFonts = {
       serif = ["IBM Plex Serif" "Noto Color Emoji"];
       sansSerif = ["IBM Plex Sans" "Noto Color Emoji"];
-      monospace = ["BlexMono Nerd Font" "Noto Color Emoji"];
+      monospace = ["Iosevka Custom" "Noto Color Emoji"];
       emoji = ["Noto Color Emoji"];
     };
   };

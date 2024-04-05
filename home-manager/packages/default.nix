@@ -34,6 +34,8 @@ in {
     cargo-flamegraph
     wget
     warp-terminal
+    gnome.gnome-font-viewer
+
     # spotify-tui
   ];
 }
