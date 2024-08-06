@@ -5,9 +5,11 @@
 }: {
   wayland.windowManager.hyprland.extraConfig = ''
     source = ~/.config/hypr/monitors.conf
-    
-                     exec-once = wl-paste --type text --watch cliphist store    
-                    $mod = SUPER 
+
+                     exec-once = wl-paste --type text --watch cliphist store
+                     exec-once = wluma
+
+                    $mod = SUPER
                     bind = $mod, R, exec, wofi --show drun,
                     bind = $mod, C, killactive,
                     bind = $mod, tab, workspace, empty
@@ -16,7 +18,7 @@
                     bind = $mod SHIFT,tab, workspace, -1
 
                     input {
-    
+
                      kb_layout = ${config.home.keyboard.layout}
                 kb_variant = ${config.home.keyboard.variant}
                 kb_model =
@@ -39,7 +41,7 @@
                 kb_model =
                 kb_options =
                 kb_options = ${lib.strings.concatStringsSep "," config.home.keyboard.options}
-      
+
 
             }
 
@@ -98,7 +100,8 @@
 
                 master {
                     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-                    new_is_master = true
+                    new_on_top = true
+
                 }
 
                 misc {

@@ -7,6 +7,8 @@
     julialang.language-julia
     ifplusor.semantic-lunaria
     mkhl.direnv
+
+    mitsuhiko.insta
   ];
   pinnednixpkgs =
     import (builtins.fetchTarball {
@@ -34,7 +36,9 @@ in {
         eamodio.gitlens
         bbenoist.nix
         tomoki1207.pdf
+
         arrterian.nix-env-selector
+
         ms-vscode-remote.remote-ssh
         ms-toolsai.jupyter
         ms-python.vscode-pylance

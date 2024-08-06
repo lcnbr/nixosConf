@@ -2,6 +2,14 @@
   prismlauncher = pkgs.prismlauncher.override {
     glfw = pkgs.glfw-wayland-minecraft;
   };
+  zed-fhs = pkgs.buildFHSUserEnv {
+    name = "zed";
+    targetPkgs = pkgs:
+      with pkgs; [
+        zed-editor
+      ];
+    runScript = "zed";
+  };
 in {
   imports = [];
   home.packages = with pkgs; [
@@ -24,17 +32,21 @@ in {
     glxinfo
     lapce
     unar
+    poppler
+    tesseract
     # centerpiece
     solaar
     morgen #cal made in ch
     figma-linux
-
-    # chromium
+    cosmic-files
+    zed-fhs
+    goldwarden
+    # wluma # chromium
     stremio
     cargo-flamegraph
     wget
     warp-terminal
-    gnome.gnome-font-viewer
+    gnome-font-viewer
 
     # spotify-tui
   ];

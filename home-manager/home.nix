@@ -76,7 +76,6 @@
     firefox-wayland #duh
     wofi #for app launch
     tailscale #for ssh
-    minecraft
     telegram-desktop
     xorg.setxkbmap
     obsidian

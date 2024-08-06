@@ -16,7 +16,11 @@
     hardware.url = "github:nixos/nixos-hardware";
 
     agenix.url = "github:ryantm/agenix";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+    };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
 
@@ -73,7 +77,9 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           # > Our main nixos configuration file <
+
           ./nixos/configuration.nix
+		home-manager.nixosModules.home-manager
         ];
       };
     };
