@@ -16,7 +16,7 @@
 
       lexend
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       cm_unicode
       lmodern
       noto-fonts-emoji
@@ -25,37 +25,37 @@
 
       iosevka-comfy.comfy
 
-      (iosevka.override {
-        set = "custom";
-        privateBuildPlan = {
-          family = "Iosevka Custom";
-          spacing = "normal";
-          serifs = "sans";
-          noCvSs = true;
-          exportGlyphNames = false;
+      # (iosevka.override {
+      #   set = "custom";
+      #   privateBuildPlan = {
+      #     family = "Iosevka Custom";
+      #     spacing = "normal";
+      #     serifs = "sans";
+      #     noCvSs = true;
+      #     exportGlyphNames = false;
 
-          variants = {
-            inherits = "ss15";
-          };
+      #     variants = {
+      #       inherits = "ss15";
+      #     };
 
-          widths = {
-            Condensed = {
-              shape = 500;
-              menu = 3;
-              css = "condensed";
-            };
-            Normal = {
-              shape = 600;
-              menu = 5;
-              css = "normal";
-            };
-          };
-        };
-      })
+      #     widths = {
+      #       Condensed = {
+      #         shape = 500;
+      #         menu = 3;
+      #         css = "condensed";
+      #       };
+      #       Normal = {
+      #         shape = 600;
+      #         menu = 5;
+      #         css = "normal";
+      #       };
+      #     };
+      #   };
+      # })
 
       # nerdfonts
-      (nerdfonts.override {fonts = ["IBMPlexMono" "Iosevka" "FiraCode" "JetBrainsMono"];})
-    ];
+      # (nerdfonts.override {fonts = ["IBMPlexMono" "Iosevka" "FiraCode" "JetBrainsMono"];})
+    ]++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
     # use fonts specified by user rather than default ones
     enableDefaultPackages = false;

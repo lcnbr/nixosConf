@@ -55,8 +55,9 @@
 
             }
                     monitor =,prefered,auto,1
-                    monitor = desc:LG Electronics LG IPS QHD 305NTEPAY244,2560x1440,1920x555,1    #landscape at unibe
-                    monitor =desc:LG Electronics LG IPS QHD 305NTMXAY243,2560x1440,4480x0,1,transform,3 #portrait at unibe
+                     monitor = desc:LG Electronics LG IPS QHD 305NTEPAY244,2560x1440,784x0,1,transform,1  #landscape at unibe
+                    monitor =desc:LG Electronics LG IPS QHD 305NTMXAY243,2560x1440,2224x555,1 #portrait at unibe
+
 
                     monitor=desc: Dell Inc. DELL U2417H 5K9YD882386L,1920x1080,0x0,1#right  at home
 

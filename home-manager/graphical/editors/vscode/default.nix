@@ -45,8 +45,8 @@ in {
         # tailscale.vscode-tailscale
         denoland.vscode-deno
         ritwickdey.liveserver
-        github.copilot
-        github.copilot-chat
+        # github.copilot
+        # github.copilot-chat
         foam.foam-vscode
         bmewburn.vscode-intelephense-client
       ]
