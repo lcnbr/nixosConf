@@ -51,6 +51,43 @@
       allowUnfree = true;
     };
   };
+  
+  
+  environment.persistence."/persist" = {
+    enable = true;  # NB: Defaults to true, not needed
+    hideMounts = true;
+    directories = [
+      "/var/log"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/etc/NetworkManager/system-connections"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    ];
+    #files = [
+    #  "/etc/machine-id"
+    #  { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+    #];
+    users.lcnbr = {
+      directories = [
+        "Downloads"
+        "Music"
+        "Pictures"
+        "Documents"
+        "Videos"
+        "VirtualBox VMs"
+        { directory = ".gnupg"; mode = "0700"; }
+        { directory = ".ssh"; mode = "0700"; }
+        { directory = ".nixops"; mode = "0700"; }
+        { directory = ".local/share/keyrings"; mode = "0700"; }
+        ".local/share/direnv"
+      ];
+      files = [
+        ".screenrc"
+      ];
+    };
+  };
+  
 
   nix = {
     # This will add each flake input as a registry
@@ -74,8 +111,11 @@
     # inputs.agenix.packages."x86_64-linux".default
   ];
   networking.hostName = "gluluon";
+  networking.hostId="b9ba5961";
 
   boot.loader.systemd-boot.enable = true;
+  zramSwap.enable = true;
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
@@ -139,6 +179,9 @@
       extraGroups = ["wheel" "networkmanager"];
     };
   };
+  boot.supportedFilesystems = [ "zfs" ];
+	boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+
 
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
@@ -197,12 +240,13 @@
     ];
   };
 
-  age.secrets.ikmail.file = ../secrets/ikmail.age;
+  #age.secrets.ikmail.file = ../secrets/ikmail.age;
 
   disko.devices = {
       disk = {
         main = {
           type = "disk";
+          device = "/dev/nvme0n1";
           content = {
             type = "gpt";
             partitions = {
@@ -274,4 +318,6 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
+  
+  
 }

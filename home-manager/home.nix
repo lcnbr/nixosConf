@@ -23,7 +23,7 @@
     ./packages
     ./services
     ./themes
-    ./users/lcnbr.nix
+    #./users/lcnbr.nix
   ];
 
   nixpkgs = {
