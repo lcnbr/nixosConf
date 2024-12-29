@@ -8,7 +8,7 @@
     # at the same time. Here's an working example:
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
-
+    nixpkgs.follows ="nixos-cosmic/nixpkgs";
     disko= {
       url = "github:nix-community/disko/latest";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +32,7 @@
       submodules = true;
     };
 
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
 
@@ -94,14 +94,21 @@
           {
             nix.settings = {
               substituters = ["https://cosmic.cachix.org/"];
-              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02sm"];
+#              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
             };
           }
           nixos-cosmic.nixosModules.default
           disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
           ./nixos/configuration.nix
-
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.lcnbr = import ./home-manager/home.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+            
         ];
       };
     };

@@ -75,7 +75,6 @@
         "Pictures"
         "Documents"
         "Videos"
-        "VirtualBox VMs"
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         { directory = ".nixops"; mode = "0700"; }
@@ -103,12 +102,14 @@
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+      substituters = ["https://hyprland.cachix.org" "https://cosmic.cachix.org/"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE= "];
     };
   };
   environment.systemPackages = [
-    # inputs.agenix.packages."x86_64-linux".default
+    # inputs.agenix.packages."x86_64-linux".defaul
+    
+    inputs.zen-browser.packages."x86_64-linux".default
   ];
   networking.hostName = "gluluon";
   networking.hostId="b9ba5961";
@@ -161,8 +162,8 @@
       enable = true;
       packages = with pkgs; [gcr];
     };
-    desktopManager.cosmic.enable = true;
-    # displayManager.cosmic-greeter.enable = true;
+ 	 desktopManager.cosmic.enable = true;
+   # displayManager.cosmic-greeter.enable = true;
     fprintd.enable = true;
   };
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.

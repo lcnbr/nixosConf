@@ -2,7 +2,6 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
-  outputs,
   lib,
   config,
   pkgs,
@@ -14,7 +13,7 @@
     # outputs.homeManagerModules.example
 
     # Or modules exported from other flakes (such as nix-colors):
-    inputs.hyprland.homeManagerModules.default
+    #inputs.hyprland.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
@@ -26,24 +25,11 @@
     #./users/lcnbr.nix
   ];
 
+
+  #programs.home-manager.enable = true;
   nixpkgs = {
     # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
+    
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -109,18 +95,17 @@
     enable = true;
   };
   # Enable home-manager and git
-  programs.home-manager.enable = true;
 
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "text/html" = ["firefox-wayland.desktop"];
+      "text/html" = ["zen-browser.desktop"];
       "application/pdf" = ["sioyek.desktop"];
     };
     defaultApplications = {
       "application/pdf" = ["sioyek.desktop"];
-      "text/html" = ["firefox-wayland.desktop"];
-      "text/x-uri" = ["firefox-wayland.desktop"];
+      "text/html" = ["zen-browser.desktop"];
+      "text/x-uri" = ["zen-browser.desktop"];
     };
   };
   home.pointerCursor = {

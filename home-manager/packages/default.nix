@@ -27,7 +27,7 @@ in {
   imports = [];
   home.packages = with pkgs; [
   openfortivpn
-  jitsi-meet-electron
+  #jitsi-meet-electron
     zed-editor.fhs
     prismlauncher
     # mathematica
