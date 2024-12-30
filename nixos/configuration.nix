@@ -185,8 +185,7 @@
     };
   };
   boot.supportedFilesystems = [ "zfs" ];
-	boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-
+	boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
 
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
@@ -321,6 +320,36 @@
       };
     };
 
+    boot.initrd.systemd.enable = true;
+
+      # boot.initrd.systemd.services.reset = {
+      #   description = "reset root filesystem";
+      #   wantedBy = [ "initrd.target" ];
+      #   after = [ "zfs-import-zroot.service" ];
+      #   before = [ "sysroot.mount" ];
+      #   path = with pkgs; [ zfs ];
+      #   unitConfig.DefaultDependencies = "no";
+      #   serviceConfig.Type = "oneshot";
+      #   script = ''
+      #       zfs rollback -r zroot/local/root@blank'';
+      # };
+
+      boot.initrd.systemd.services.initrd-rollback-root = {
+          after = [ "zfs-import-zroot.service" ];
+          requires = [ "zfs-import-zroot.service" ];
+          before = [ "sysroot.mount" ];
+          wantedBy = [ "initrd.target" ];
+          description = "Rollback root fs";
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r zroot/local/root@blank";
+          };
+        };
+
+    # boot.initrd.postDeviceCommands = lib.mkAfter ''
+       # zpool import zroot
+       # zfs rollback -r zroot/local/root@blank
+     # '';
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 
