@@ -32,15 +32,15 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  
-  
+
+
   fileSystems."/" =
     { device = "zroot/local/root";
       fsType = "zfs";
     };
 
   fileSystems."/boot" = lib.mkForce
-    { device = "/dev/disk/by-uuid/FD47-9D1D";
+    { device = "/dev/disk/by-uuid/D1ED-C40D";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
@@ -56,7 +56,7 @@
     };
 
   fileSystems."/persist" =
-    { 
+    {
     neededForBoot=true;
     device = "zroot/local/persist";
       fsType = "zfs";

@@ -51,8 +51,8 @@
       allowUnfree = true;
     };
   };
-  
-  
+
+
   environment.persistence."/persist" = {
     enable = true;  # NB: Defaults to true, not needed
     hideMounts = true;
@@ -70,11 +70,9 @@
     #];
     users.lcnbr = {
       directories = [
-        "Downloads"
-        "Music"
-        "Pictures"
-        "Documents"
-        "Videos"
+        "documents"
+        "media"
+        "dev"
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         { directory = ".nixops"; mode = "0700"; }
@@ -86,7 +84,7 @@
       ];
     };
   };
-  
+
 
   nix = {
     # This will add each flake input as a registry
@@ -108,7 +106,7 @@
   };
   environment.systemPackages = [
     # inputs.agenix.packages."x86_64-linux".defaul
-    
+
     inputs.zen-browser.packages."x86_64-linux".default
   ];
   networking.hostName = "gluluon";
@@ -166,13 +164,19 @@
    # displayManager.cosmic-greeter.enable = true;
     fprintd.enable = true;
   };
+  users.mutableUsers=false;
   # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
+    root={
+
+      initialHashedPassword="$6$1EKwWplF7X6IP7d4$hcpJVomZ4k0LH8lpnNjkgcYJwciDh/fvcOo0/fSrg/z/VT.DQjN4weLg3gtZI4wniETjeycJbQAu6ElTBqFyN0";
+    };
     lcnbr = {
       # TODO: You can set an initial password for your user.
       # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
       # Be sure to change it (using passwd) after rebooting!
       isNormalUser = true;
+      initialHashedPassword="$6$1EKwWplF7X6IP7d4$hcpJVomZ4k0LH8lpnNjkgcYJwciDh/fvcOo0/fSrg/z/VT.DQjN4weLg3gtZI4wniETjeycJbQAu6ElTBqFyN0";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILwU7t6UJmWcDd+oayloWbTNixqe5J010amkU0p/7gKc im@lcnbr.ch"
       ];
@@ -319,6 +323,6 @@
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
-  
-  
+
+
 }

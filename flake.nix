@@ -13,7 +13,7 @@
       url = "github:nix-community/disko/latest";
         inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -108,23 +108,11 @@
             home-manager.users.lcnbr = import ./home-manager/home.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
-            
+
         ];
       };
     };
 
-    # # Standalone home-manager configuration entrypoint
-    # # Available through 'home-manager switch --flake .#lcnbr@gluluon'
-    homeConfigurations = {
-      "lcnbr@gluluon" = home-manager.lib.homeManagerConfiguration {
-         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-         extraSpecialArgs = {inherit inputs outputs;};
-         modules = [
-          	home-manager.nixosModules.home-manager
-          	./home-manager/home.nix
-           # > Our main home-manager configuration file <
-         ];
-       };
-     };
+
   };
 }

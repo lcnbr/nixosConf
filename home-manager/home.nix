@@ -29,7 +29,7 @@
   #programs.home-manager.enable = true;
   nixpkgs = {
     # You can add overlays here
-    
+
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
@@ -96,6 +96,18 @@
   };
   # Enable home-manager and git
 
+  xdg.userDirs={
+    enable=true;
+    createDirectories=true;
+    desktop="${config.home.homeDirectory}/desktop";
+    documents="${config.home.homeDirectory}/documents";
+    download="${config.home.homeDirectory}/downloads";
+    music="${config.home.homeDirectory}/media/music";
+    pictures="${config.home.homeDirectory}/media/pictures";
+    publicShare="${config.home.homeDirectory}/share";
+    templates="${config.home.homeDirectory}/templates";
+    videos="${config.home.homeDirectory}/media/videos";
+  };
   xdg.mimeApps = {
     enable = true;
     associations.added = {
