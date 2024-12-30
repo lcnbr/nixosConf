@@ -334,18 +334,37 @@
       #       zfs rollback -r zroot/local/root@blank'';
       # };
 
-      boot.initrd.systemd.services.initrd-rollback-root = {
-          after = [ "zfs-import-zroot.service" ];
-          requires = [ "zfs-import-zroot.service" ];
-          before = [ "sysroot.mount" ];
-          wantedBy = [ "initrd.target" ];
-          description = "Rollback root fs";
-          serviceConfig = {
-            Type = "oneshot";
-            ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r zroot/local/root@blank";
-          };
-        };
-
+      # boot.initrd.systemd.services.initrd-rollback-root = {
+      #     after = [ "zfs-import-zroot.service" ];
+      #     requires = [ "zfs-import-zroot.service" ];
+      #     before = [ "sysroot.mount" ];
+      #     wantedBy = [ "initrd.target" ];
+      #     description = "Rollback root fs";
+      #     serviceConfig = {
+      #       Type = "oneshot";
+      #       ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r zroot/local/root@blank";
+      #     };
+      #   };
+      boot.initrd.systemd.services.rollback = {
+        description = "Rollback ZFS datasets to a pristine state";
+        wantedBy = [
+          "initrd.target"
+        ];
+        after = [
+          "zfs-import-zroot.service"
+        ];
+        before = [
+          "sysroot.mount"
+        ];
+        path = with pkgs; [
+          zfs
+        ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          zfs rollback -r zroot/local/root@blank && echo "rollback complete"
+        '';
+      };
     # boot.initrd.postDeviceCommands = lib.mkAfter ''
        # zpool import zroot
        # zfs rollback -r zroot/local/root@blank
