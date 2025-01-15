@@ -17,13 +17,17 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    inputs.
+    nix-index-database.hmModules.nix-index
     ./graphical
     ./terminal
     ./packages
     ./services
     ./themes
-    #./users/lcnbr.nix
+    ./users/lcnbr.nix
   ];
+
+
 
 
   #programs.home-manager.enable = true;
@@ -111,14 +115,20 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "text/html" = ["zen-browser.desktop"];
-      "application/pdf" = ["sioyek.desktop"];
+      "text/html" = ["zen.desktop"];
+      "application/pdf" = ["org.kde.okular.desktop"];
     };
     defaultApplications = {
-      "application/pdf" = ["sioyek.desktop"];
-      "text/html" = ["zen-browser.desktop"];
-      "text/x-uri" = ["zen-browser.desktop"];
+      "application/pdf" = ["org.kde.okular..desktop"];
+      "text/x-uri" = ["zen.desktop"];
     };
+    defaultApplications = {
+        "text/html" = "zen.desktop";
+        "x-scheme-handler/http" = "zen.desktop";
+        "x-scheme-handler/https" = "zen.desktop";
+        "x-scheme-handler/about" = "zen.desktop";
+        "x-scheme-handler/unknown" = "zen.desktop";
+      };
   };
   home.pointerCursor = {
     name = "Catppuccin-Mocha-Dark-Cursors";
@@ -148,8 +158,9 @@
     bash = {
       enable = true;
       sessionVariables = {
-        EDITOR = "nano";
+        EDITOR = "hx";
         SHELL = "nu";
+        DEFAULT_BROWSER="zen";
       };
     };
     fish = {

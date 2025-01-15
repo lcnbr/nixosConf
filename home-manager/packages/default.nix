@@ -30,7 +30,11 @@ in {
   #jitsi-meet-electron
     zed-editor.fhs
     prismlauncher
-    # mathematica
+    kmeet
+    mathematica
+    bitwarden-desktop
+    # comma
+    devenv
     glfw-wayland
     devbox
     okular

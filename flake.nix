@@ -8,6 +8,9 @@
     # at the same time. Here's an working example:
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+    #
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.follows ="nixos-cosmic/nixpkgs";
     disko= {
       url = "github:nix-community/disko/latest";
@@ -32,6 +35,10 @@
       submodules = true;
     };
 
+    ghostty = {
+         url = "github:ghostty-org/ghostty";
+       };
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
@@ -46,6 +53,7 @@
     nixpkgs,
     nixos-cosmic,
     home-manager,
+    nix-index-database,
     disko,
     ...
   } @ inputs: let
@@ -100,6 +108,7 @@
           nixos-cosmic.nixosModules.default
           disko.nixosModules.disko
           inputs.impermanence.nixosModules.impermanence
+          inputs.nix-index-database.nixosModules.nix-index
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {

@@ -13,7 +13,9 @@
       gyre-fonts
       liberation_ttf
       work-sans
-
+      monaspace
+      iosevka-comfy.comfy-wide
+      iosevka-comfy.comfy-fixed
       lexend
       noto-fonts
       noto-fonts-cjk-sans
@@ -22,6 +24,7 @@
       noto-fonts-emoji
       roboto
       ibm-plex
+      iosevka
 
       iosevka-comfy.comfy
 

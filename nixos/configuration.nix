@@ -1,56 +1,30 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
   outputs,
   lib,
   config,
   pkgs,
+  ghostty,
   ...
 }: {
-  # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
     ./fonts.nix
     # inputs.hardware.nixosModules.framework-12th-gen-intel
-    # inputs.agenix.nixosModules.default
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
-
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
+
+
 
 
   environment.persistence."/persist" = {
@@ -87,8 +61,6 @@
 
 
   nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
@@ -96,18 +68,15 @@
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
       auto-optimise-store = true;
       substituters = ["https://hyprland.cachix.org" "https://cosmic.cachix.org/"];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE= "];
     };
   };
   environment.systemPackages = [
-    # inputs.agenix.packages."x86_64-linux".defaul
-
     inputs.zen-browser.packages."x86_64-linux".default
+    inputs.ghostty.packages.x86_64-linux.default
   ];
   networking.hostName = "gluluon";
   networking.hostId="b9ba5961";
@@ -119,10 +88,8 @@
 
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/Zurich";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -139,7 +106,6 @@
 
   console.useXkbConfig = true;
 
-  # Configure keymap in X11
   services.xserver = {
     xkb = {
       layout = "us";
@@ -165,22 +131,17 @@
     fprintd.enable = true;
   };
   users.mutableUsers=false;
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
     root={
 
       initialHashedPassword="$6$1EKwWplF7X6IP7d4$hcpJVomZ4k0LH8lpnNjkgcYJwciDh/fvcOo0/fSrg/z/VT.DQjN4weLg3gtZI4wniETjeycJbQAu6ElTBqFyN0";
     };
     lcnbr = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
       isNormalUser = true;
       initialHashedPassword="$6$1EKwWplF7X6IP7d4$hcpJVomZ4k0LH8lpnNjkgcYJwciDh/fvcOo0/fSrg/z/VT.DQjN4weLg3gtZI4wniETjeycJbQAu6ElTBqFyN0";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILwU7t6UJmWcDd+oayloWbTNixqe5J010amkU0p/7gKc im@lcnbr.ch"
       ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
       extraGroups = ["wheel" "networkmanager"];
     };
   };
@@ -202,6 +163,13 @@
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
+  programs.nh = {
+      enable = true;
+      clean.enable = true;
+      # clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/lcnbr/dev/nixos";
+    };
+
   services = {
     getty = {
       autologinUser = "lcnbr";
@@ -211,12 +179,10 @@
     };
     openssh = {
       enable = true;
-      # Forbid root login through SSH.
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
       };
-      # Use keys only. Remove if you want to SSH using password (not recommended)
     };
     greetd = {
       enable = true;
@@ -243,6 +209,8 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  # programs.nix-index-database.comma.enable = true;
 
   #age.secrets.ikmail.file = ../secrets/ikmail.age;
 
@@ -279,7 +247,6 @@
         zroot = {
           type = "zpool";
           rootFsOptions = {
-            # https://wiki.archlinux.org/title/Install_Arch_Linux_on_ZFS
             acltype = "posixacl";
             atime = "off";
             compression = "zstd";
@@ -320,55 +287,60 @@
       };
     };
 
-    boot.initrd.systemd.enable = true;
+    # boot.initrd.systemd.enable = true;
 
-      # boot.initrd.systemd.services.reset = {
-      #   description = "reset root filesystem";
-      #   wantedBy = [ "initrd.target" ];
-      #   after = [ "zfs-import-zroot.service" ];
-      #   before = [ "sysroot.mount" ];
-      #   path = with pkgs; [ zfs ];
-      #   unitConfig.DefaultDependencies = "no";
-      #   serviceConfig.Type = "oneshot";
-      #   script = ''
-      #       zfs rollback -r zroot/local/root@blank'';
-      # };
+    #   # boot.initrd.systemd.services.reset = {
+    #   #   description = "reset root filesystem";
+    #   #   wantedBy = [ "initrd.target" ];
+    #   #   after = [ "zfs-import-zroot.service" ];
+    #   #   before = [ "sysroot.mount" ];
+    #   #   path = with pkgs; [ zfs ];
+    #   #   unitConfig.DefaultDependencies = "no";
+    #   #   serviceConfig.Type = "oneshot";
+    #   #   script = ''
+    #   #       zfs rollback -r zroot/local/root@blank'';
+    #   # };
 
-      # boot.initrd.systemd.services.initrd-rollback-root = {
-      #     after = [ "zfs-import-zroot.service" ];
-      #     requires = [ "zfs-import-zroot.service" ];
-      #     before = [ "sysroot.mount" ];
-      #     wantedBy = [ "initrd.target" ];
-      #     description = "Rollback root fs";
-      #     serviceConfig = {
-      #       Type = "oneshot";
-      #       ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r zroot/local/root@blank";
-      #     };
-      #   };
-      boot.initrd.systemd.services.rollback = {
-        description = "Rollback ZFS datasets to a pristine state";
-        wantedBy = [
-          "initrd.target"
-        ];
-        after = [
-          "zfs-import-zroot.service"
-        ];
-        before = [
-          "sysroot.mount"
-        ];
-        path = with pkgs; [
-          zfs
-        ];
-        unitConfig.DefaultDependencies = "no";
-        serviceConfig.Type = "oneshot";
-        script = ''
-          zfs rollback -r zroot/local/root@blank && echo "rollback complete"
-        '';
-      };
+    #   # boot.initrd.systemd.services.initrd-rollback-root = {
+    #   #     after = [ "zfs-import-zroot.service" ];
+    #   #     requires = [ "zfs-import-zroot.service" ];
+    #   #     before = [ "sysroot.mount" ];
+    #   #     wantedBy = [ "initrd.target" ];
+    #   #     description = "Rollback root fs";
+    #   #     serviceConfig = {
+    #   #       Type = "oneshot";
+    #   #       ExecStart = "${config.boot.zfs.package}/sbin/zfs rollback -r zroot/local/root@blank";
+    #   #     };
+    #   #   };
+    #   boot.initrd.systemd.services.rollback = {
+    #     description = "Rollback ZFS datasets to a pristine state";
+    #     wantedBy = [
+    #       "initrd.target"
+    #     ];
+    #     after = [
+    #       "zfs-import-zroot.service"
+    #     ];
+    #     before = [
+    #       "sysroot.mount"
+    #     ];
+    #     path = with pkgs; [
+    #       zfs
+    #     ];
+    #     unitConfig.DefaultDependencies = "no";
+    #     serviceConfig.Type = "oneshot";
+    #     script = ''
+    #       zfs rollback -r zroot/local/root@blank && echo "rollback complete"
+    #     '';
+    #   };
     # boot.initrd.postDeviceCommands = lib.mkAfter ''
        # zpool import zroot
        # zfs rollback -r zroot/local/root@blank
      # '';
+     #
+     boot.initrd.postResumeCommands = lib.mkAfter ''
+        zfs rollback -r zroot/local/root@blank && echo "rollback complete"
+      '';
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 
